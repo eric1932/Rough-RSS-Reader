@@ -1,12 +1,8 @@
 package com.eric.me.roughrssreader;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.prof.rssparser.Article;
+import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.ViewHolder> {
@@ -72,6 +66,7 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
         viewHolder.date.setText(dateStr);
         viewHolder.intro.setText(introStr);
         // to show image
+        Picasso.get().load(imageURL).into(viewHolder.headPicture);
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,3 +86,4 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
         }
     }
 }
+//TODO 图片太小了
