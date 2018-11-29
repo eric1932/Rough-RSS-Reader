@@ -41,8 +41,8 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
         ImageView headPicture;
         Button button;
 
-        //TODO private
-        public ViewHolder(View itemView) {
+        //原来是public
+        private ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textViewTitle);
             date = itemView.findViewById(R.id.textViewDate);
@@ -83,8 +83,6 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
                 myDontKnowContext.startActivity(new Intent(Intent.ACTION_VIEW, uri));
             }
         });
-
-        //TODO OnClickListener
     }
 
     @Override
