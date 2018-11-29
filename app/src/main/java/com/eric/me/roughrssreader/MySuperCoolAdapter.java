@@ -1,12 +1,17 @@
 package com.eric.me.roughrssreader;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.prof.rssparser.Article;
@@ -34,6 +39,7 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
         TextView date;
         TextView intro;
         ImageView headPicture;
+        Button button;
 
         //TODO private
         public ViewHolder(View itemView) {
@@ -42,6 +48,7 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
             date = itemView.findViewById(R.id.textViewDate);
             intro = itemView.findViewById(R.id.textViewIntro);
             headPicture = itemView.findViewById(R.id.imageHeadPicture);
+            button = itemView.findViewById(R.id.buttonBrowser);
         }
     }
 
@@ -61,20 +68,23 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
         String dateStr = currentArticle.getPubDate().toString();
         String introStr = currentArticle.getDescription();
         String imageURL = currentArticle.getImage();
+        final String originalURL = currentArticle.getLink();
 
         viewHolder.title.setText(titleStr);
         viewHolder.date.setText(dateStr);
         viewHolder.intro.setText(introStr);
         // to show image
         Picasso.get().load(imageURL).into(viewHolder.headPicture);
-
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        // Button Listener
+        viewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO Chrome Webkit
+                Uri uri = Uri.parse(originalURL);
+                myDontKnowContext.startActivity(new Intent(Intent.ACTION_VIEW, uri));
             }
         });
 
+        //TODO OnClickListener
     }
 
     @Override
