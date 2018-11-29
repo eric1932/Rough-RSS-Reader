@@ -23,7 +23,7 @@
             android:text="Title"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/headImage"
+            app:layout_constraintEnd_toStartOf="@+id/imageHeadPicture"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,6 +45,7 @@
             android:layout_marginTop="48dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:maxLines="10"
             android:text="Intro"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
 
         <ImageView
-            android:id="@+id/headImage"
+            android:id="@+id/imageHeadPicture"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="16dp"
