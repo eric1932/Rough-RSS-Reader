@@ -30,12 +30,12 @@ public class RSSTestActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.theREcyclerVIEW);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-    }
 
-    public void onClickMain(View v) {
-        //TODO 替换为自定义网址
-        String urlString = "https://www.androidcentral.com/feed";
-        retrieveFeed(urlString);
+        //public void onClickMain(View v) {
+            //TODO 替换为自定义网址
+            String urlString = "https://www.androidcentral.com/feed";
+            retrieveFeed(urlString);
+        //}
     }
 
     public void onClickCurl(View v) {
