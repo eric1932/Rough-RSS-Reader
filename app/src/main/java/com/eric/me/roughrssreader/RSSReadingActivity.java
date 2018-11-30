@@ -6,18 +6,14 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.prof.rssparser.Article;
 import com.prof.rssparser.Parser;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
-public class RSSTestActivity extends AppCompatActivity {
+public class RSSReadingActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private MySuperCoolAdapter mySuperCoolAdapter;
@@ -52,7 +48,7 @@ public class RSSTestActivity extends AppCompatActivity {
         parser.onFinish(new Parser.OnTaskCompleted() {
             @Override
             public void onTaskCompleted(ArrayList<Article> arrayList) {
-                mySuperCoolAdapter = new MySuperCoolAdapter(arrayList, R.layout.card, RSSTestActivity.this);
+                mySuperCoolAdapter = new MySuperCoolAdapter(arrayList, R.layout.card, RSSReadingActivity.this);
                 recyclerView.setAdapter(mySuperCoolAdapter);
             }
 

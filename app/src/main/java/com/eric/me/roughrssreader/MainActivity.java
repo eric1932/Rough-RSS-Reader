@@ -82,14 +82,13 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-            siteName = "Android Central";
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_read) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_bookmark) {
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_setting) {
 
         } else if (id == R.id.nav_share) {
 
@@ -103,7 +102,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onClickTest(View v) {
-        Intent intent = new Intent(getBaseContext(), RSSTestActivity.class);
+        Intent intent = new Intent(getBaseContext(), RSSReadingActivity.class);
+        siteName = "Android Central";
         intent.putExtra("SITE NAME", siteName);
         startActivity(intent);
     }
