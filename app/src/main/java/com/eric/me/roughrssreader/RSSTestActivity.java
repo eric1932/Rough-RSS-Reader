@@ -31,18 +31,19 @@ public class RSSTestActivity extends AppCompatActivity {
         Intent intentFrom = getIntent();
         String siteName = intentFrom.getStringExtra("SITE NAME");
 
+        String urlString = "https://www.androidcentral.com/feed";
         //TODO 处理 siteName
+        switch (siteName) {
+            case "Android Central":
+                urlString = "https://www.androidcentral.com/feed";
+        }
 
         //Load RecyclerView
         recyclerView = findViewById(R.id.theREcyclerVIEW);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        //public void onClickMain(View v) {
-            //TODO 替换为自定义网址
-            String urlString = "https://www.androidcentral.com/feed";
-            retrieveFeed(urlString);
-        //}
+        retrieveFeed(urlString);
     }
 
     public void retrieveFeed(String urlString) {
