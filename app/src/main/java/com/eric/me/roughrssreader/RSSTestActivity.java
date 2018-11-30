@@ -1,5 +1,6 @@
 package com.eric.me.roughrssreader;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -26,6 +27,12 @@ public class RSSTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rsstest);
 
+        //get intent information
+        Intent intentFrom = getIntent();
+        String siteName = intentFrom.getStringExtra("SITE NAME");
+
+        //TODO 处理 siteName
+
         //Load RecyclerView
         recyclerView = findViewById(R.id.theREcyclerVIEW);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -36,10 +43,6 @@ public class RSSTestActivity extends AppCompatActivity {
             String urlString = "https://www.androidcentral.com/feed";
             retrieveFeed(urlString);
         //}
-    }
-
-    public void onClickCurl(View v) {
-
     }
 
     public void retrieveFeed(String urlString) {

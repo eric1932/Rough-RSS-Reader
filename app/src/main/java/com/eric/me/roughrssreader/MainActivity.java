@@ -17,6 +17,8 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static String siteName = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+            siteName = "Android Central";
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity
 
     public void onClickTest(View v) {
         Intent intent = new Intent(getBaseContext(), RSSTestActivity.class);
+        intent.putExtra("SITE NAME", siteName);
         startActivity(intent);
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,8 +80,18 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
         viewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 Uri uri = Uri.parse(originalURL);
                 myDontKnowContext.startActivity(new Intent(Intent.ACTION_VIEW, uri));
+                */
+                //替换成Chrome Custom Tab
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                //builder 参数
+                //TODO 根据网站变色
+                //假定Android Central
+                builder.setToolbarColor(1756221);
+                CustomTabsIntent customTabsIntent = builder.build();
+                customTabsIntent.launchUrl(myDontKnowContext, Uri.parse(originalURL));
             }
         });
     }
