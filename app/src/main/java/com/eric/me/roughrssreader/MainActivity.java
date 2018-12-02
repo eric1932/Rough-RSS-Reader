@@ -1,5 +1,6 @@
 package com.eric.me.roughrssreader;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,34 +13,48 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //获取启动按钮
+        Button start = (Button)findViewById(R.id.button2);
+        //获取移除按钮
+        Button remove = (Button)findViewById(R.id.button3);
+        //绑定监听
+        start.setOnClickListener(new View.OnClickListener()
+        {
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v)
+            {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(MainActivity.this, FxService.class);
+                //启动FxService
+                startService(intent);
+                finish();
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        remove.setOnClickListener(new View.OnClickListener()
+        {
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+            @Override
+            public void onClick(View v)
+            {
+                //uninstallApp("com.phicomm.hu");
+                Intent intent = new Intent(MainActivity.this, FxService.class);
+                //终止FxService
+                stopService(intent);
+            }
+        });
+
     }
 
     @Override
@@ -98,4 +113,11 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void changeActivity(View view) {
+        Intent i = new Intent(MainActivity.this, Main2Activity.class);
+        startActivity(i);
+    }
+
+
 }
