@@ -1,4 +1,4 @@
-package com.eric.me.roughrssreadernew;
+package com.eric.me.roughrssreader;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

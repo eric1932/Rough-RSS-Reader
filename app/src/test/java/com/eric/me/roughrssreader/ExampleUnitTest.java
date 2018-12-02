@@ -1,4 +1,4 @@
-package com.eric.me.roughrssreadernew;
+package com.eric.me.roughrssreader;
 
 import org.junit.Test;
 

@@ -1,9 +1,7 @@
-package com.eric.me.roughrssreadernew;
+package com.eric.me.roughrssreader;
 
-import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
