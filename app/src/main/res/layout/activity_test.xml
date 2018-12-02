@@ -32,10 +32,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:onClick="onClickNYTimes"
             android:text="NYTimes"
-            app:layout_constraintBaseline_toBaselineOf="@+id/buttonCNN"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonAndroidAuthority" />
 
         <Button
             android:id="@+id/buttonSwipeRefresh"
@@ -54,8 +55,8 @@
             android:layout_marginStart="8dp"
             android:onClick="onClickIThome"
             android:text="ITHome"
-            app:layout_constraintStart_toEndOf="@+id/buttonAndroidAuthority"
-            tools:layout_editor_absoluteY="35dp" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonAndroidAuthority"
+            app:layout_constraintStart_toEndOf="@+id/buttonAndroidAuthority" />
 
         <Button
             android:id="@+id/buttonCNN"
@@ -64,8 +65,8 @@
             android:layout_marginStart="8dp"
             android:onClick="onClickCNN"
             android:text="CNN"
-            app:layout_constraintStart_toEndOf="@+id/buttonNYTimes"
-            tools:layout_editor_absoluteY="91dp" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonNYTimes"
+            app:layout_constraintStart_toEndOf="@+id/buttonNYTimes" />
 
         <Button
             android:id="@+id/buttonAndroidAuthority"
