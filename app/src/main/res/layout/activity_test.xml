@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".TestActivity">
 
+    <LinearLayout
+        android:id="@+id/backLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"></LinearLayout>
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayoutTest"
         android:layout_width="match_parent"
@@ -22,15 +28,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/buttonQuickNYTimes"
+            android:id="@+id/buttonNYTimes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:onClick="onClickNYTimes"
-            android:text="Enter NYTimes Feed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonQuickIThome" />
+            android:text="NYTimes"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonCNN"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/buttonSwipeRefresh"
@@ -40,38 +45,36 @@
             android:layout_marginTop="8dp"
             android:text="Swipe Refresh Layout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonCNBeta" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonCustomFeed" />
 
         <Button
-            android:id="@+id/buttonQuickIThome"
+            android:id="@+id/buttonIThome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:onClick="onClickIThome"
-            android:text="Enter IThome Feed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonQuickAndroidAuthority" />
+            android:text="ITHome"
+            app:layout_constraintStart_toEndOf="@+id/buttonAndroidAuthority"
+            tools:layout_editor_absoluteY="35dp" />
 
         <Button
             android:id="@+id/buttonCNN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:onClick="onClickCNN"
             android:text="CNN"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonCustomFeed" />
+            app:layout_constraintStart_toEndOf="@+id/buttonNYTimes"
+            tools:layout_editor_absoluteY="91dp" />
 
         <Button
-            android:id="@+id/buttonQuickAndroidAuthority"
+            android:id="@+id/buttonAndroidAuthority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:onClick="onClickAndroidAuthority"
-            android:text="Enter Android Authority Feed"
+            android:text="Android Authority"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTestActivity" />
 
@@ -104,7 +107,7 @@
             android:onClick="onClickCNBeta"
             android:text="CNBeta"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonCNN" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonNYTimes" />
 
         <Button
             android:id="@+id/buttonCustomFeed"
@@ -115,7 +118,7 @@
             android:onClick="onClickCustomURL"
             android:text="Enter Custom Feed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonQuickNYTimes" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewOtherTests" />
 
         <Button
             android:id="@+id/buttonRefresh"
@@ -127,12 +130,16 @@
             android:text="Reload"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-    </android.support.constraint.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/backLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        <TextView
+            android:id="@+id/textViewOtherTests"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:text="Other Tests"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonCNBeta" />
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
