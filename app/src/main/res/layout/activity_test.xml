@@ -55,8 +55,8 @@
             android:layout_marginStart="8dp"
             android:onClick="onClickIThome"
             android:text="ITHome (Slow)"
-            app:layout_constraintBaseline_toBaselineOf="@+id/buttonAndroidAuthority"
-            app:layout_constraintStart_toEndOf="@+id/buttonAndroidAuthority" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonZhihu"
+            app:layout_constraintStart_toEndOf="@+id/buttonZhihu" />
 
         <Button
             android:id="@+id/buttonCNN"
