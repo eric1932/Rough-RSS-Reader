@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:onClick="onClickIThome"
-            android:text="ITHome (Slow)"
+            android:text="ITHome"
             app:layout_constraintBaseline_toBaselineOf="@+id/buttonZhihu"
             app:layout_constraintStart_toEndOf="@+id/buttonZhihu" />
 
@@ -96,7 +96,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:onClick="onClickSspai"
-            android:text="Sspai (Slow)"
+            android:text="Sspai"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonNYTimes" />
 
