@@ -22,7 +22,7 @@ public class WebViewActivity extends AppCompatActivity {
         String content = intent.getStringExtra("tmp"); //tmp is content
         URL = intent.getStringExtra("URL");
         WebView webView = findViewById(R.id.webview);
-        //webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setJavaScriptEnabled(true);
         webView.setHorizontalScrollBarEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
         //webView.loadDataWithBaseURL(null, "<style>img{display: inline; height: auto; max-width: 100%;} " +
