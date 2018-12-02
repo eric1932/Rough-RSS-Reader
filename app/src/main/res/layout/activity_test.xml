@@ -34,7 +34,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:onClick="onClickNYTimes"
-            android:text="NYTimes"
+            android:text="NYTimes (No Image)"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonAndroidAuthority" />
 
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:onClick="onClickIThome"
-            android:text="ITHome"
+            android:text="ITHome (Slow)"
             app:layout_constraintBaseline_toBaselineOf="@+id/buttonAndroidAuthority"
             app:layout_constraintStart_toEndOf="@+id/buttonAndroidAuthority" />
 
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:onClick="onClickCNN"
-            android:text="CNN"
+            android:text="CNN (No Image)"
             app:layout_constraintBaseline_toBaselineOf="@+id/buttonNYTimes"
             app:layout_constraintStart_toEndOf="@+id/buttonNYTimes" />
 
@@ -75,7 +75,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:onClick="onClickAndroidAuthority"
-            android:text="Android Authority"
+            android:text="Android Authority (Perfect)"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTestActivity" />
 
@@ -94,19 +94,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:onClick="onClickSspai"
-            android:text="Sspai"
-            app:layout_constraintBaseline_toBaselineOf="@+id/buttonCNBeta"
-            app:layout_constraintStart_toEndOf="@+id/buttonCNBeta" />
-
-        <Button
-            android:id="@+id/buttonCNBeta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:onClick="onClickCNBeta"
-            android:text="CNBeta"
+            android:onClick="onClickSspai"
+            android:text="Sspai (Slow)"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonNYTimes" />
 
@@ -137,10 +127,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
             android:text="Other Tests"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonCNBeta" />
+            tools:layout_editor_absoluteY="219dp" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
