@@ -70,33 +70,35 @@ public class TestActivityFragment extends Fragment {
                 startActivityWithParams("http://www.zhihu.com/rss");
             }
         });
-        mView.findViewById(R.id.buttonRefresh).setVisibility(View.INVISIBLE);
-    }
-
-    public void onClickCustomURL(View v) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("Custom URL:");
-        final EditText editText = new EditText(mContext);
-        //TODO set padding
-        builder.setView(editText);
-        builder.setPositiveButton("Go", new DialogInterface.OnClickListener() {
+        mView.findViewById(R.id.buttonCustomFeed).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String URL = editText.getText().toString();
-                if (!URL.startsWith("http://") && !URL.startsWith("https://")) {
-                    URL = "http://" + URL;
-                }
-                if (ReadingActivity.testSingleFeed(URL)) {
-                    startActivityWithParams(URL);
-                } else {
-                    Toast.makeText(mContext, "Please input a leagal URL.", Toast.LENGTH_LONG).show();
-                }
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setTitle("Custom URL:");
+                final EditText editText = new EditText(mContext);
+                //TODO set padding
+                builder.setView(editText);
+                builder.setPositiveButton("Go", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String URL = editText.getText().toString();
+                        if (!URL.startsWith("http://") && !URL.startsWith("https://")) {
+                            URL = "http://" + URL;
+                        }
+                        if (ReadingActivity.testSingleFeed(URL)) {
+                            startActivityWithParams(URL);
+                        } else {
+                            Toast.makeText(mContext, "Please input a leagal URL.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                builder.setCancelable(true);
+                AlertDialog dialog = builder.create();
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.show();
             }
         });
-        builder.setCancelable(true);
-        AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.show();
+        mView.findViewById(R.id.buttonRefresh).setVisibility(View.INVISIBLE);
     }
 
     private void startActivityWithParams(String... URL) {
