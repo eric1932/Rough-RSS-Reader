@@ -119,4 +119,8 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void onClickEnterTestActivity(View v) {
+        startActivity(new Intent(getApplication(), TestActivity.class));
+    }
 }
