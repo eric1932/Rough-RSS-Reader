@@ -110,7 +110,7 @@ public class TestActivity extends AppCompatActivity {
     }
 
     public void onClickDataHelper(View v) {
-        DataHelper.writeFile(getApplication(), "test read", "test.txt", true);
-        Toast.makeText(getApplication(), DataHelper.readFile(getApplication(), "test.txt"), Toast.LENGTH_LONG).show();
+        DataHelper.writeFile(getApplication(), "test\nread", "test.txt", true);
+        Toast.makeText(getApplication(), DataHelper.readFileData(getApplication(), "test.txt"), Toast.LENGTH_LONG).show();
     }
 }
