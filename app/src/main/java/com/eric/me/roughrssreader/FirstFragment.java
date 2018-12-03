@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 
 public class FirstFragment extends Fragment {
 
+    private View mView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mView = inflater.inflate(R.layout.first_fragment, container, false);
+        mView = inflater.inflate(R.layout.first_fragment, container, false);
         return mView;
     }
 }

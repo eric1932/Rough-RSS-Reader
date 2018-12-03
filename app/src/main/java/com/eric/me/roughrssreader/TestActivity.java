@@ -60,10 +60,6 @@ public class TestActivity extends AppCompatActivity {
         startActivityWithParams("http://rss.cnn.com/rss/cnn_us.rss");
     }
 
-    public void onClickCNBeta(View v) {
-        startActivityWithParams("http://rssdiy.com/u/2/cnbeta.xml");
-    }
-
     public void onClickSspai(View v) {
         startActivityWithParams("https://sspai.com/feed");
     }

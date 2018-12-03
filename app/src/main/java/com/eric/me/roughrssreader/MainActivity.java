@@ -102,7 +102,9 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.frameLayout, new FirstFragment())
                     .commit();
         } else if (id == R.id.nav_gallery) {
-
+            fragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, new TestActivityFragment())
+                    .commit();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -110,9 +112,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-//            fragmentManager.beginTransaction()
-//                    .replace(R.id.frameLayout, new TestActivity())
-//                    .commit();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
