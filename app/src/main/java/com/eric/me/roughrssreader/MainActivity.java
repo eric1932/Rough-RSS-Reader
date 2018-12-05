@@ -97,15 +97,19 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_read) {
+            /* example
+            fragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, new FirstFragment())
+                    .commit(); */
             fragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, new FirstFragment())
                     .commit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_sites) {
             fragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, new TestActivityFragment())
                     .commit();
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_favorites) {
 
         } else if (id == R.id.nav_manage) {
 
