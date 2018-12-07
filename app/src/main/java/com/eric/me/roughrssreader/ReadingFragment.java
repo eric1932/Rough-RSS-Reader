@@ -31,6 +31,7 @@ public class ReadingFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_reading, container, false);
         progressBar = view.findViewById(R.id.progressBar);
+        feedNumber = ((MainActivity) getActivity()).getFeedNumber();
         initRecyclerView();
         // wait until load finished
         (new LoadOnFinish()).execute();
@@ -54,6 +55,7 @@ public class ReadingFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            articleList = MainActivity.sortArticle(articleList);
             updateRecyclerView();
             progressBar.setVisibility(View.INVISIBLE);
         }
@@ -62,7 +64,6 @@ public class ReadingFragment extends Fragment {
     private void getData() {
         articleList = ((MainActivity) getActivity()).getArticleList();
         loaded = ((MainActivity) getActivity()).getLoaded();
-        feedNumber = ((MainActivity) getActivity()).getFeedNumber();
     }
 
     private void initRecyclerView() {

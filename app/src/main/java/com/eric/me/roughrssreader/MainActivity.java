@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity
             public void onTaskCompleted(ArrayList<Article> arrayList) {
                 articleList.addAll(arrayList);
                 loaded++;
-                sortArticle();
+                //sortArticle();
             }
 
             @Override
@@ -191,6 +191,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void sortArticle() {
+        articleList = sortArticle(articleList);
+    }
+
+    public static ArrayList<Article> sortArticle(ArrayList<Article> articleList) {
         //make a new comparable list
         ArrayList<ArticleComparable> articleComparable = new ArrayList<>();
         for (int i = 0; i < articleList.size(); i++) {
@@ -201,7 +205,7 @@ public class MainActivity extends AppCompatActivity
         for (ArticleComparable ac : articleComparable) {
             toReplace.add(ac.getArticle());
         }
-        articleList = toReplace;
+        return toReplace;
     }
 
     private void clearFeed() {
