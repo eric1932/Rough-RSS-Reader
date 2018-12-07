@@ -17,7 +17,8 @@
             android:id="@+id/buttonEnterTestActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClickEnterTestActivity"
-            android:text="Enter Test" />
+            android:onClick="onClickTest"
+            android:text="Test" />
+
     </FrameLayout>
 </android.support.constraint.ConstraintLayout>

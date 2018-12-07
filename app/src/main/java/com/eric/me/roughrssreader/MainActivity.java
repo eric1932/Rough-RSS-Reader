@@ -14,9 +14,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.prof.rssparser.Article;
+import com.prof.rssparser.Parser;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ArrayList<Article> articleList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +52,14 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //my code below
+
         //redirect to test activity
-        Intent intent = new Intent(this, TestActivity.class);
-        //startActivity(intent);
+        /*Intent intent = new Intent(this, TestActivity.class);
+        startActivity(intent);*/
+
+        addFeed("https://www.androidauthority.com/feed");
+        addFeed("https://www.ithome.com/rss/");
     }
 
     //my addition
@@ -128,4 +142,68 @@ public class MainActivity extends AppCompatActivity
     public void onClickEnterTestActivity(View v) {
         startActivity(new Intent(getApplication(), TestActivity.class));
     }
+
+    public void onClickTest(View v) {
+        if (articleList != null) {
+            Toast.makeText(getApplicationContext(), "" + articleList.get(0).getPubDate().getTime(), Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "null", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void prepareMultipleFeed(String[] URL) {
+        return;
+    }
+
+    private void addFeed(String url) {
+        if (articleList == null) {
+            articleList = new ArrayList<>();
+        }
+        Parser parser = new Parser();
+        parser.execute(url);
+        parser.onFinish(new Parser.OnTaskCompleted() {
+            @Override
+            public void onTaskCompleted(ArrayList<Article> arrayList) {
+                articleList.addAll(arrayList);
+                sortArticle();
+            }
+
+            @Override
+            public void onError() {
+                //do nothing
+            }
+        });
+    }
+
+    private void updateRecyclerView() {
+
+    }
+
+    private void sortArticle() {
+        //make a new comparable list
+        ArrayList<ArticleComparable> articleComparable = new ArrayList<>();
+        for (int i = 0; i < articleList.size(); i++) {
+            articleComparable.add(new ArticleComparable(articleList.get(i)));
+        }
+        Collections.sort(articleComparable);
+        ArrayList<Article> toReplace = new ArrayList<>();
+        for (ArticleComparable ac : articleComparable) {
+            toReplace.add(ac.getArticle());
+        }
+        articleList = toReplace;
+    }
+
+    private void clearFeed() {
+        articleList = new ArrayList<>();
+    }
+
+    /*private static long date2ms(String input) {
+        SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+        try {
+            Date date = format.parse(input);
+            return date.getTime();
+        } catch (ParseException e) {
+            return 0;
+        }
+    }*/
 }
