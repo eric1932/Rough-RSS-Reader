@@ -1,5 +1,7 @@
 package com.eric.me.roughrssreader;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.prof.rssparser.Article;
 
@@ -21,16 +24,40 @@ public class ReadingFragment extends Fragment {
     private int loaded;
     private MySuperCoolAdapter adapter;
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_reading, container, false);
-//        do {
-            getData();
-//        } while (loaded < 6);
-        initRecyclerview();
+        view = inflater.inflate(R.layout.activity_reading, container, false);
+        progressBar = view.findViewById(R.id.progressBar);
+        initRecyclerView();
+        // wait until load finished
+        (new LoadOnFinish()).execute();
         return view;
+    }
+
+    class LoadOnFinish extends AsyncTask<Void, Void, Void> {
+
+        LoadOnFinish() {
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            do {
+                getData();
+                //TODO loaded < feed number
+            } while (loaded < 4);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            updateRecyclerView();
+            progressBar.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void getData() {
@@ -38,10 +65,14 @@ public class ReadingFragment extends Fragment {
         loaded = ((MainActivity) getActivity()).getLoaded();
     }
 
-    private void initRecyclerview() {
-        recyclerView = view.findViewById(R.id.fragmentedRecyclerView);
+    private void initRecyclerView() {
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        updateRecyclerView();
+    }
+
+    private void updateRecyclerView() {
         adapter = new MySuperCoolAdapter(articleList, R.layout.card_view, getActivity());
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 }

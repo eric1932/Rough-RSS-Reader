@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity
         addFeed("https://www.ithome.com/rss/");
         addFeed("http://rss.nytimes.com/services/xml/rss/nyt/US.xml");
         addFeed("http://rss.cnn.com/rss/cnn_us.rss");
-        addFeed("https://sspai.com/feed");
-        addFeed("http://www.zhihu.com/rss");
+//        addFeed("https://sspai.com/feed");
+//        addFeed("http://www.zhihu.com/rss");
     }
 
     //my addition
