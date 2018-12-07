@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity
 //        addFeed("https://sspai.com/feed");
 //        addFeed("http://www.zhihu.com/rss");
 
-        // select "News" by default
-        navigationView.getMenu().getItem(0).setChecked(true);
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
     }
 
