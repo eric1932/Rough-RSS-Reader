@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ArrayList<Article> articleList;
+    private int loaded = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,10 @@ public class MainActivity extends AppCompatActivity
 
         addFeed("https://www.androidauthority.com/feed");
         addFeed("https://www.ithome.com/rss/");
+        addFeed("http://rss.nytimes.com/services/xml/rss/nyt/US.xml");
+        addFeed("http://rss.cnn.com/rss/cnn_us.rss");
+        addFeed("https://sspai.com/feed");
+        addFeed("http://www.zhihu.com/rss");
     }
 
     //my addition
@@ -109,6 +114,9 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        //get floatingActionButton
+        FloatingActionButton floatingActionButton = findViewById(R.id.fab);
+        floatingActionButton.show();
         //Prepare to inflate fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -118,8 +126,9 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.frameLayout, new FirstFragment())
                     .commit(); */
             fragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, new FirstFragment())
+                    .replace(R.id.frameLayout, new ReadingFragment())
                     .commit();
+            floatingActionButton.hide();
         } else if (id == R.id.nav_sites) {
             fragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, new TestActivityFragment())
@@ -165,6 +174,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onTaskCompleted(ArrayList<Article> arrayList) {
                 articleList.addAll(arrayList);
+                loaded++;
                 sortArticle();
             }
 
@@ -195,6 +205,14 @@ public class MainActivity extends AppCompatActivity
 
     private void clearFeed() {
         articleList = new ArrayList<>();
+    }
+
+    public ArrayList<Article> getArticleList() {
+        return articleList;
+    }
+
+    public int getLoaded() {
+        return loaded;
     }
 
     /*private static long date2ms(String input) {
