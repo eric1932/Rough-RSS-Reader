@@ -57,10 +57,16 @@ public class MainActivity extends AppCompatActivity
 
         //my code below
 
-        String[] feedList = getFeedListOrDefault();
-        feedNumber = feedList.length;
-        for (String x : feedList) {
-            addFeed(x);
+//        String[] feedList = getFeedListOrDefault();
+//        feedNumber = feedList.length;
+//        for (String x : feedList) {
+//            addFeed(x);
+//        }
+
+        Site[] siteList = getFODNew();
+        feedNumber = siteList.length;
+        for (Site x : siteList) {
+            addFeed(x.getUrl());
         }
 
         //auto select "News"
@@ -229,6 +235,26 @@ public class MainActivity extends AppCompatActivity
         return  "https://www.androidauthority.com/feed" + "\n"
                 + "http://rss.nytimes.com/services/xml/rss/nyt/US.xml" + "\n"
                 + "https://www.ithome.com/rss/";
+    }
+
+    private Site[] getFODNew() {
+        DataHelper dataHelper = new DataHelper(getApplication());
+        String json;
+        Site[] siteList;
+        String fileName = "feedlist.txt";
+        if (dataHelper.isExist(fileName)) {
+            try {
+                json = dataHelper.readFile(fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+                //failed
+                return new Site[0];
+            }
+            return (new SiteHelper(json)).getArray();
+        } else {
+            dataHelper.writeFile(SiteHelper.getDefaultJson(), fileName, true);
+            return SiteHelper.getDefaultSiteArray();
+        }
     }
 
     private String[] feedListAsArray(String feedList) {
