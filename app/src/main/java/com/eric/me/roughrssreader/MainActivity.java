@@ -55,16 +55,17 @@ public class MainActivity extends AppCompatActivity
 
         //my code below
 
-        //redirect to test activity
-        /*Intent intent = new Intent(this, TestActivity.class);
-        startActivity(intent);*/
-
+        //for test
         addFeed("https://www.androidauthority.com/feed");
         addFeed("https://www.ithome.com/rss/");
         addFeed("http://rss.nytimes.com/services/xml/rss/nyt/US.xml");
         addFeed("http://rss.cnn.com/rss/cnn_us.rss");
 //        addFeed("https://sspai.com/feed");
 //        addFeed("http://www.zhihu.com/rss");
+
+        // select "News" by default
+        navigationView.getMenu().getItem(0).setChecked(true);
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
     }
 
     //my addition
@@ -115,8 +116,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //get floatingActionButton
-        FloatingActionButton floatingActionButton = findViewById(R.id.fab);
-        floatingActionButton.show();
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.show();
         //Prepare to inflate fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, new ReadingFragment())
                     .commit();
-            floatingActionButton.hide();
+            fab.hide();
         } else if (id == R.id.nav_sites) {
             fragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, new TestActivityFragment())

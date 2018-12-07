@@ -14,10 +14,10 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/buttonEnterTestActivity"
+            android:id="@+id/buttonEnterTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClickTest"
+            android:onClick="onClickEnterTestActivity"
             android:text="Test" />
 
     </FrameLayout>
