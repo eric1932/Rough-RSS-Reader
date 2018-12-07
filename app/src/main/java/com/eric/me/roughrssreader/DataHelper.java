@@ -8,7 +8,9 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -17,16 +19,31 @@ import java.io.Writer;
 
 class DataHelper {
 
+    private Context mContext;
+
+    public DataHelper(Context c) {
+        mContext = c;
+    }
+
+    boolean isExist(final String fileName) {
+        File file = new File(mContext.getFilesDir(), fileName);
+        return file.exists();
+    }
+
+    boolean DeleteFile(final String fileName) {
+        File file = new File(mContext.getFilesDir(), fileName);
+        return file.delete();
+    }
+
     //来自 https://blog.csdn.net/it_liuwei/article/details/52333642
     /**
      *
-     * @param mContext current context
      * @param anyString any string to write in the file
      * @param anyFileName file name
      * @param overWrite if true, overwrite the file; else, append at the end (no new line)
      * @return success or not
      */
-    static boolean writeFile(final Context mContext, final String anyString, final String anyFileName, final boolean overWrite) {
+    boolean writeFile(final String anyString, final String anyFileName, final boolean overWrite) {
         Writer writer = null;
         try {
             OutputStream outputStream;
@@ -56,12 +73,11 @@ class DataHelper {
 
     /**
      * Another implementation.
-     * @param mContext
      * @param fileName
      * @param message
      * @return
      */
-    static boolean writeFileData(final Context mContext, final String fileName, final String message) {
+    boolean writeFileData(final String fileName, final String message) {
         try {
             FileOutputStream fout = mContext.openFileOutput(fileName, mContext.MODE_PRIVATE);
             byte[] bytes = message.getBytes();
@@ -76,7 +92,7 @@ class DataHelper {
 
     //自带OverWrite，而且是外置存储
     //来自 https://blog.csdn.net/csdnzouqi/article/details/75333266
-    static boolean saveFile(final Context mContext, final String str, final String fileName) {
+    boolean saveFile(final String str, final String fileName) {
         //创建String对象保存文件名路径
         try {
             //创建指定路径的文件
@@ -102,37 +118,30 @@ class DataHelper {
 
     /**
      *
-     * @param mContext
      * @param anyFilename
      * @return
+     * @throws IOException
      */
-    static String readFile(final Context mContext, final String anyFilename) {
+    String readFile(final String anyFilename) throws IOException {
         BufferedReader bufferedReader = null;
         try {
             InputStream in = mContext.openFileInput(anyFilename);
             bufferedReader = new BufferedReader(new InputStreamReader(in));
             StringBuilder stringBuilder = new StringBuilder();
-            String line = null;
+            String line;
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line);
             }
+            bufferedReader.close();
             return stringBuilder.toString();
-        } catch (Exception e) {
-            Log.d("ERICSEXCEPTION", e.toString());
-        } finally {
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close();
-                } catch (Exception e) {
-                    Log.d("ERICSEXCEPTION", e.toString());
-                }
-            }
+        } catch (FileNotFoundException fnfe) {
+            return null;
+        } catch (IOException ioe) {
+            throw new IOException();
         }
-        return null;
     }
 
-    //try to make it not static
-    static String readFileData(final Context mContext, final String fileName) {
+    String readFileData(final String fileName) {
         String res = "";
         try {
             FileInputStream fin = mContext.openFileInput(fileName);
@@ -147,7 +156,8 @@ class DataHelper {
         return res;
     }
 
-    public static String getFile(String fileName) {
+    //这个适合外置存储
+    /*String getFile(String fileName) {
         try {
             //创建文件
             File file = new File(Environment.getExternalStorageDirectory(), fileName);
@@ -174,13 +184,9 @@ class DataHelper {
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
 
-    /**
-     *
-     * @param fileName
-     */
-    public static void deletefile(String fileName) {
+    /*public static void deletefile(String fileName) {
         try {
             // 找到文件所在的路径并删除该文件
             File file = new File(Environment.getExternalStorageDirectory(), fileName);
@@ -188,9 +194,5 @@ class DataHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    static void myDeleteFile(final Context mContext, final String fileName) {
-        mContext.deleteFile(fileName);
-    }
+    }*/
 }

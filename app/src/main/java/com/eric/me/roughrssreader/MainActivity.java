@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity
         addFeed("http://rss.cnn.com/rss/cnn_us.rss");
 //        addFeed("https://sspai.com/feed");
 //        addFeed("http://www.zhihu.com/rss");
+        //TODO getFeedList()
+        //getFeedList();
 
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
     }
@@ -159,10 +162,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void prepareMultipleFeed(String[] URL) {
-        return;
-    }
-
     private void addFeed(String url) {
         if (articleList == null) {
             articleList = new ArrayList<>();
@@ -184,10 +183,6 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private void updateRecyclerView() {
-
-    }
-
     private void sortArticle() {
         //make a new comparable list
         ArrayList<ArticleComparable> articleComparable = new ArrayList<>();
@@ -205,6 +200,12 @@ public class MainActivity extends AppCompatActivity
     private void clearFeed() {
         articleList = new ArrayList<>();
     }
+
+    private void getFeedList() {
+
+    }
+
+    /*Getters*/
 
     public ArrayList<Article> getArticleList() {
         return articleList;
