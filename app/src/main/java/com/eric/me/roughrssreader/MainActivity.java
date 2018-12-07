@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.prof.rssparser.Article;
 import com.prof.rssparser.Parser;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ArrayList<Article> articleList;
-    private int loaded = 0;
+    private int loaded = 0, feedNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +58,21 @@ public class MainActivity extends AppCompatActivity
         //my code below
 
         //for test
-        addFeed("https://www.androidauthority.com/feed");
-        addFeed("https://www.ithome.com/rss/");
-        addFeed("http://rss.nytimes.com/services/xml/rss/nyt/US.xml");
-        addFeed("http://rss.cnn.com/rss/cnn_us.rss");
+//        addFeed("https://www.androidauthority.com/feed");
+//        addFeed("https://www.ithome.com/rss/");
+//        addFeed("http://rss.nytimes.com/services/xml/rss/nyt/US.xml");
+//        addFeed("http://rss.cnn.com/rss/cnn_us.rss");
 //        addFeed("https://sspai.com/feed");
 //        addFeed("http://www.zhihu.com/rss");
         //TODO getFeedList()
-        //getFeedList();
+        String[] feedList = getFeedListOrDefault();
+        feedNumber = feedList.length;
+        for (String x : feedList) {
+            addFeed(x);
+        }
 
+        //auto select "News"
+        navigationView.getMenu().getItem(0).setChecked(true);
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
     }
 
@@ -201,8 +208,36 @@ public class MainActivity extends AppCompatActivity
         articleList = new ArrayList<>();
     }
 
-    private void getFeedList() {
+    private String[] getFeedListOrDefault() {
+        DataHelper dataHelper = new DataHelper(getApplication());
+        String fileName = "feedlist.txt";
+        if (dataHelper.isExist(fileName)) {
+            String[] toReturn = new String[0];
+            try {
+                toReturn = feedListAsArray(dataHelper.readFile(fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplication(), "IO ERROR", Toast.LENGTH_LONG).show();
 
+                //copied from below
+                String defaultFeedList = "https://www.androidauthority.com/feed" + "\n"
+                        + "http://rss.nytimes.com/services/xml/rss/nyt/US.xml" + "\n"
+                        + "https://www.ithome.com/rss/";
+                dataHelper.writeFile(defaultFeedList, fileName, true);
+                return feedListAsArray(defaultFeedList);
+            }
+            return toReturn;
+        } else {
+            String defaultFeedList = "https://www.androidauthority.com/feed" + "\n"
+                    + "http://rss.nytimes.com/services/xml/rss/nyt/US.xml" + "\n"
+                    + "https://www.ithome.com/rss/";
+            dataHelper.writeFile(defaultFeedList, fileName, true);
+            return feedListAsArray(defaultFeedList);
+        }
+    }
+
+    private String[] feedListAsArray(String feedList) {
+        return feedList.split("\n");
     }
 
     /*Getters*/
@@ -213,6 +248,10 @@ public class MainActivity extends AppCompatActivity
 
     public int getLoaded() {
         return loaded;
+    }
+
+    public int getFeedNumber() {
+        return feedNumber;
     }
 
     /*private static long date2ms(String input) {

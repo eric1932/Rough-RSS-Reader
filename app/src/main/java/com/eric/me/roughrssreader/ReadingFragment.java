@@ -21,7 +21,7 @@ public class ReadingFragment extends Fragment {
 
     private View view;
     private ArrayList<Article> articleList;
-    private int loaded;
+    private int loaded, feedNumber;
     private MySuperCoolAdapter adapter;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
@@ -47,8 +47,7 @@ public class ReadingFragment extends Fragment {
         protected Void doInBackground(Void... voids) {
             do {
                 getData();
-                //TODO loaded < feed number
-            } while (loaded < 4);
+            } while (loaded < feedNumber);
             return null;
         }
 
@@ -63,6 +62,7 @@ public class ReadingFragment extends Fragment {
     private void getData() {
         articleList = ((MainActivity) getActivity()).getArticleList();
         loaded = ((MainActivity) getActivity()).getLoaded();
+        feedNumber = ((MainActivity) getActivity()).getFeedNumber();
     }
 
     private void initRecyclerView() {

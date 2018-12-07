@@ -131,6 +131,7 @@ class DataHelper {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line);
+                stringBuilder.append("\n");
             }
             bufferedReader.close();
             return stringBuilder.toString();
