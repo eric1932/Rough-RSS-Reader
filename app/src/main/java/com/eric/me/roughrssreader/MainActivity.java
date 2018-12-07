@@ -95,9 +95,10 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        //Prepare to inflate fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        if (id == R.id.nav_read) {
+        if (id == R.id.nav_news) {
             /* example
             fragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, new FirstFragment())
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity
                     .commit();
         } else if (id == R.id.nav_favorites) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_tools) {
 
         } else if (id == R.id.nav_share) {
 
