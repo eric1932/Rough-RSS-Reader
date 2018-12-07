@@ -57,14 +57,6 @@ public class MainActivity extends AppCompatActivity
 
         //my code below
 
-        //for test
-//        addFeed("https://www.androidauthority.com/feed");
-//        addFeed("https://www.ithome.com/rss/");
-//        addFeed("http://rss.nytimes.com/services/xml/rss/nyt/US.xml");
-//        addFeed("http://rss.cnn.com/rss/cnn_us.rss");
-//        addFeed("https://sspai.com/feed");
-//        addFeed("http://www.zhihu.com/rss");
-        //TODO getFeedList()
         String[] feedList = getFeedListOrDefault();
         feedNumber = feedList.length;
         for (String x : feedList) {
@@ -223,21 +215,20 @@ public class MainActivity extends AppCompatActivity
                 e.printStackTrace();
                 Toast.makeText(getApplication(), "IO ERROR", Toast.LENGTH_LONG).show();
 
-                //copied from below
-                String defaultFeedList = "https://www.androidauthority.com/feed" + "\n"
-                        + "http://rss.nytimes.com/services/xml/rss/nyt/US.xml" + "\n"
-                        + "https://www.ithome.com/rss/";
-                dataHelper.writeFile(defaultFeedList, fileName, true);
-                return feedListAsArray(defaultFeedList);
+                return feedListAsArray(getDefaultFeedString());
             }
             return toReturn;
         } else {
-            String defaultFeedList = "https://www.androidauthority.com/feed" + "\n"
-                    + "http://rss.nytimes.com/services/xml/rss/nyt/US.xml" + "\n"
-                    + "https://www.ithome.com/rss/";
-            dataHelper.writeFile(defaultFeedList, fileName, true);
-            return feedListAsArray(defaultFeedList);
+            String defaultFeed = getDefaultFeedString();
+            dataHelper.writeFile(defaultFeed, fileName, true);
+            return feedListAsArray(defaultFeed);
         }
+    }
+
+    private String getDefaultFeedString() {
+        return  "https://www.androidauthority.com/feed" + "\n"
+                + "http://rss.nytimes.com/services/xml/rss/nyt/US.xml" + "\n"
+                + "https://www.ithome.com/rss/";
     }
 
     private String[] feedListAsArray(String feedList) {
