@@ -35,7 +35,6 @@
             android:name="com.eric.me.roughrssreader.ReadingActivity"
             android:label="Reader" />
         <activity android:name="com.eric.me.roughrssreader.WebViewActivity" />
-        <activity android:name=".TestDrawerActivity" />
     </application>
 
 </manifest>
