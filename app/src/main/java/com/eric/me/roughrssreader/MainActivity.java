@@ -57,13 +57,7 @@ public class MainActivity extends AppCompatActivity
 
         //my code below
 
-//        String[] feedList = getFeedListOrDefault();
-//        feedNumber = feedList.length;
-//        for (String x : feedList) {
-//            addFeed(x);
-//        }
-
-        Site[] siteList = getFODNew();
+        Site[] siteList = getFeedOrDefault();
         feedNumber = siteList.length;
         for (Site x : siteList) {
             addFeed(x.getUrl());
@@ -210,34 +204,7 @@ public class MainActivity extends AppCompatActivity
         articleList = new ArrayList<>();
     }
 
-    private String[] getFeedListOrDefault() {
-        DataHelper dataHelper = new DataHelper(getApplication());
-        String fileName = "feedlist.txt";
-        if (dataHelper.isExist(fileName)) {
-            String[] toReturn = new String[0];
-            try {
-                toReturn = feedListAsArray(dataHelper.readFile(fileName));
-            } catch (IOException e) {
-                e.printStackTrace();
-                Toast.makeText(getApplication(), "IO ERROR", Toast.LENGTH_LONG).show();
-
-                return feedListAsArray(getDefaultFeedString());
-            }
-            return toReturn;
-        } else {
-            String defaultFeed = getDefaultFeedString();
-            dataHelper.writeFile(defaultFeed, fileName, true);
-            return feedListAsArray(defaultFeed);
-        }
-    }
-
-    private String getDefaultFeedString() {
-        return  "https://www.androidauthority.com/feed" + "\n"
-                + "http://rss.nytimes.com/services/xml/rss/nyt/US.xml" + "\n"
-                + "https://www.ithome.com/rss/";
-    }
-
-    private Site[] getFODNew() {
+    private Site[] getFeedOrDefault() {
         DataHelper dataHelper = new DataHelper(getApplication());
         String json;
         Site[] siteList;
