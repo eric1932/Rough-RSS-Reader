@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -132,12 +131,14 @@ public class MainActivity extends AppCompatActivity
             fab.hide();
         } else if (id == R.id.nav_sites) {
             fragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, new TestActivityFragment())
+                    .replace(R.id.frameLayout, new SiteManagerFragment())
                     .commit();
         } else if (id == R.id.nav_favorites) {
 
         } else if (id == R.id.nav_tools) {
-
+            fragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, new TestActivityFragment())
+                    .commit();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -232,6 +233,27 @@ public class MainActivity extends AppCompatActivity
 
     public ArrayList<Article> getArticleList() {
         return articleList;
+    }
+
+    //TODO to be refined
+    public ArrayList<Site> getSiteListAsArrayList() {
+        DataHelper dataHelper = new DataHelper(getApplication());
+        String json;
+        Site[] siteList;
+        String fileName = "feedlist.txt";
+        if (dataHelper.isExist(fileName)) {
+            try {
+                json = dataHelper.readFile(fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+                //failed
+                return new ArrayList<>();
+            }
+            return (new SiteHelper(json)).getArrayList();
+        } else {
+            dataHelper.writeFile(SiteHelper.getDefaultJson(), fileName, true);
+            return SiteHelper.getDefaultSiteArrayList();
+        }
     }
 
     public int getLoaded() {

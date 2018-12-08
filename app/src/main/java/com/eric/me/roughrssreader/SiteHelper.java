@@ -29,7 +29,7 @@ public class SiteHelper {
         return toReturn;
     }
 
-    public ArrayList<Site> getArrayList() {
+    ArrayList<Site> getArrayList() {
         return siteList;
     }
 
@@ -41,6 +41,16 @@ public class SiteHelper {
         Gson gson = new Gson();
         String json = "[{\"site_name\":\"IT Home\",\"url\":\"http://www.ithome.com/rss\"},{\"site_name\":\"Android Authority\",\"url\":\"https://www.androidauthority.com/feed\"}]";
         return gson.fromJson(json, Site[].class);
+    }
+
+    //TODO to be refined
+    static ArrayList<Site> getDefaultSiteArrayList() {
+        Site[] tmp = getDefaultSiteArray();
+        ArrayList<Site> toReturn = new ArrayList<>();
+        for (Site x : tmp) {
+            toReturn.add(x);
+        }
+        return toReturn;
     }
 
     static String getDefaultJson() {

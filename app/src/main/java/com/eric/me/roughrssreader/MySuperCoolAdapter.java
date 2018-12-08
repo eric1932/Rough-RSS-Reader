@@ -19,12 +19,12 @@ import java.util.ArrayList;
 public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.ViewHolder> {
 
     private ArrayList<Article> manyArticles = new ArrayList<>();
-    private int theInteger;
+    private int cardViewID;
     private Context contextGivenByAncestor;
 
     MySuperCoolAdapter(ArrayList<Article> articleInput, int n, Context context) {
         manyArticles = articleInput;
-        theInteger = n;
+        cardViewID = n;
         contextGivenByAncestor = context;
     }
 
@@ -45,7 +45,7 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(theInteger, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(cardViewID, viewGroup, false);
         return new ViewHolder(v);
     }
 
