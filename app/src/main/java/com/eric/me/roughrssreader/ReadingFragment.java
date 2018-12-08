@@ -48,6 +48,11 @@ public class ReadingFragment extends Fragment {
         protected Void doInBackground(Void... voids) {
             do {
                 getData();
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException i) {
+                    //do nothing
+                }
             } while (loaded < feedNumber);
             return null;
         }
@@ -61,6 +66,7 @@ public class ReadingFragment extends Fragment {
         }
     }
 
+    //TODO 这里有一个bug
     private void getData() {
         articleList = ((MainActivity) getActivity()).getArticleList();
         loaded = ((MainActivity) getActivity()).getLoaded();
