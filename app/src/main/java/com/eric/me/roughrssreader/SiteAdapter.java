@@ -1,6 +1,8 @@
 package com.eric.me.roughrssreader;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,6 +46,30 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.ViewHolder> {
         Site currentSite = siteArrayList.get(i);
         String siteName = currentSite.getSiteName();
         viewHolder.tvSiteName.setText(siteName);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setTitle("Remove Sources?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //TODO
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //TODO
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.setCanceledOnTouchOutside(true);
+                alertDialog.show();
+            }
+        });
     }
 
     @Override
