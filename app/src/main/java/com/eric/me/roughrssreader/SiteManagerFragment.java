@@ -58,6 +58,9 @@ public class SiteManagerFragment extends Fragment {
                         if (!ReadingActivity.testSingleFeed(url)) {
                             Snackbar.make(view, "Please input legal rss feed url", Snackbar.LENGTH_LONG).show();
                         } else {
+                            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                                url = "http://" + url;
+                            }
                             addSite(title, url);
                             Snackbar.make(view, "Success", Snackbar.LENGTH_LONG).show();
                         }

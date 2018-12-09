@@ -27,10 +27,12 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvSiteName;
+        TextView tvSiteURL;
 
         private ViewHolder(View itemView) {
             super(itemView);
             tvSiteName = itemView.findViewById(R.id.textViewSiteName);
+            tvSiteURL = itemView.findViewById(R.id.textViewSiteURL);
         }
     }
 
@@ -44,8 +46,8 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         Site currentSite = siteArrayList.get(i);
-        String siteName = currentSite.getSiteName();
-        viewHolder.tvSiteName.setText(siteName);
+        viewHolder.tvSiteName.setText(currentSite.getSiteName());
+        viewHolder.tvSiteURL.setText(currentSite.getUrl());
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
