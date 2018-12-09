@@ -68,15 +68,6 @@ public class MainActivity extends AppCompatActivity
         onNavigationItemSelected(navigationView.getMenu().getItem(1));
     }
 
-    //my addition
-    @Override
-    public void onResume() {
-        super.onResume();
-        //redirect to test activity
-        Intent intent = new Intent(this, TestActivity.class);
-        //startActivity(intent);
-    }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
