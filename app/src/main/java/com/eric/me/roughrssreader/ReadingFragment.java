@@ -82,4 +82,13 @@ public class ReadingFragment extends Fragment {
         adapter = new MySuperCoolAdapter(articleList, R.layout.card_view, getActivity());
         recyclerView.setAdapter(adapter);
     }
+
+    public ReadingFragment getInstance() {
+        return this;
+    }
+
+    //TODO
+    void reload() {
+        adapter.notifyDataSetChanged();
+    }
 }
