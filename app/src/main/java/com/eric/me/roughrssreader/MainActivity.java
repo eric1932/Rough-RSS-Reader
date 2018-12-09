@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity
 
     private ArrayList<Article> articleList;
     private int loaded = 0, feedNumber;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //get floatingActionButton
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.hide();
         //Prepare to inflate fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -257,6 +258,10 @@ public class MainActivity extends AppCompatActivity
 
     public int getFeedNumber() {
         return feedNumber;
+    }
+
+    FloatingActionButton getFAB() {
+        return fab;
     }
 
     /*private static long date2ms(String input) {

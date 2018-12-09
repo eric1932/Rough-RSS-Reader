@@ -59,23 +59,12 @@ public class ReadingActivity extends AppCompatActivity {
     }
 
     public static boolean testSingleFeed(String URL) {
-        final ArrayList<Integer> toReturn = new ArrayList<>();
-        //0 means no problem
-        toReturn.add(0);
-        Parser parser = new Parser();
-        parser.execute(URL);
-        parser.onFinish(new Parser.OnTaskCompleted() {
-            @Override
-            public void onTaskCompleted(ArrayList<Article> arrayList) {
-                //do nothing
-            }
-
-            @Override
-            public void onError() {
-                //1 means error
-                toReturn.set(0, 1);
-            }
-        });
-        return (toReturn.get(0) == 0);
+        if (!URL.contains(".") || URL.contains(" ") || URL.contains("\\")) {
+            return false;
+        } else if (!URL.startsWith("http://") && !URL.startsWith("https://")) {
+            URL = "http://" + URL;
+        }
+        //TODO 判断是否为RSS网页
+        return true;
     }
 }
