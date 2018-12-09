@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
 
         //auto select "News"
         navigationView.getMenu().getItem(0).setChecked(true);
-        onNavigationItemSelected(navigationView.getMenu().getItem(0));
+        onNavigationItemSelected(navigationView.getMenu().getItem(1));
     }
 
     //my addition
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity
 
         //get floatingActionButton
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.show();
+        fab.hide();
         //Prepare to inflate fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -128,8 +128,8 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, new ReadingFragment())
                     .commit();
-            fab.hide();
         } else if (id == R.id.nav_sites) {
+            fab.show();
             fragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, new SiteManagerFragment())
                     .commit();
@@ -206,13 +206,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     private Site[] getFeedOrDefault() {
-        DataHelper dataHelper = new DataHelper(getApplication());
+        IOHelper ioHelper = new IOHelper(getApplication());
         String json;
-        Site[] siteList;
         String fileName = "feedlist.txt";
-        if (dataHelper.isExist(fileName)) {
+        if (ioHelper.isExist(fileName)) {
             try {
-                json = dataHelper.readFile(fileName);
+                json = ioHelper.readFile(fileName);
             } catch (IOException e) {
                 e.printStackTrace();
                 //failed
@@ -220,13 +219,9 @@ public class MainActivity extends AppCompatActivity
             }
             return (new SiteHelper(json)).getArray();
         } else {
-            dataHelper.writeFile(SiteHelper.getDefaultJson(), fileName, true);
+            ioHelper.writeFile(SiteHelper.getDefaultJson(), fileName, true);
             return SiteHelper.getDefaultSiteArray();
         }
-    }
-
-    private String[] feedListAsArray(String feedList) {
-        return feedList.split("\n");
     }
 
     /*Getters*/
@@ -237,13 +232,13 @@ public class MainActivity extends AppCompatActivity
 
     //TODO to be refined
     public ArrayList<Site> getSiteListAsArrayList() {
-        DataHelper dataHelper = new DataHelper(getApplication());
+        IOHelper ioHelper = new IOHelper(getApplication());
         String json;
         Site[] siteList;
         String fileName = "feedlist.txt";
-        if (dataHelper.isExist(fileName)) {
+        if (ioHelper.isExist(fileName)) {
             try {
-                json = dataHelper.readFile(fileName);
+                json = ioHelper.readFile(fileName);
             } catch (IOException e) {
                 e.printStackTrace();
                 //failed
@@ -251,7 +246,7 @@ public class MainActivity extends AppCompatActivity
             }
             return (new SiteHelper(json)).getArrayList();
         } else {
-            dataHelper.writeFile(SiteHelper.getDefaultJson(), fileName, true);
+            ioHelper.writeFile(SiteHelper.getDefaultJson(), fileName, true);
             return SiteHelper.getDefaultSiteArrayList();
         }
     }

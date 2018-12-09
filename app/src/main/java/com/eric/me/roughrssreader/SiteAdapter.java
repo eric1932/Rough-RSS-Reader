@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.ViewHolder> {
 
-    private ArrayList<Site> siteArrayList = new ArrayList<>();
+    private ArrayList<Site> siteArrayList;
     private int cardViewID;
     private Context mContext;
 
@@ -42,7 +42,7 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         Site currentSite = siteArrayList.get(i);
         String siteName = currentSite.getSiteName();
         viewHolder.tvSiteName.setText(siteName);
@@ -50,12 +50,14 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.ViewHolder> {
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final int position = viewHolder.getAdapterPosition();
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setTitle("Remove Sources?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //TODO
+                        removeItemAndSave(position);
+                        notifyDataSetChanged();
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -79,5 +81,13 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.ViewHolder> {
         } else {
             return siteArrayList.size();
         }
+    }
+
+    private void removeItemAndSave(final int index) {
+        siteArrayList.remove(index);
+        SiteHelper siteHelper = new SiteHelper(siteArrayList);
+        String newJson = siteHelper.toJson();
+        IOHelper ioHelper = new IOHelper(mContext);
+        ioHelper.writeFile(newJson, "feedlist.txt", true);
     }
 }

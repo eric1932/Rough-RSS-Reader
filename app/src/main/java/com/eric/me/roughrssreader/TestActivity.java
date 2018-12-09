@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 public class TestActivity extends AppCompatActivity {
 
     @Override
@@ -110,8 +112,12 @@ public class TestActivity extends AppCompatActivity {
     }
 
     public void onClickDataHelper(View v) {
-        DataHelper dataHelper = new DataHelper(getApplication());
-        dataHelper.writeFile("test\nread", "test.txt", true);
-        Toast.makeText(getApplication(), dataHelper.readFileData("test.txt"), Toast.LENGTH_LONG).show();
+        IOHelper ioHelper = new IOHelper(getApplication());
+        ioHelper.writeFile("test\nread", "test.txt", true);
+        try {
+            Toast.makeText(getApplication(), ioHelper.readFile("test.txt"), Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

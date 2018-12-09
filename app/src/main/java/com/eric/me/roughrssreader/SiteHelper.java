@@ -9,12 +9,16 @@ public class SiteHelper {
 
     private ArrayList<Site> siteList;
 
-    public SiteHelper() {
+    SiteHelper() {
         siteList = new ArrayList<>();
     }
 
     SiteHelper(String json) {
         siteList = new ArrayList<>(Arrays.asList((new Gson()).fromJson(json, Site[].class)));
+    }
+
+    SiteHelper(ArrayList<Site> siteList) {
+        this.siteList = siteList;
     }
 
     public void add(String siteName, String url) {

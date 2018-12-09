@@ -17,11 +17,11 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
-class DataHelper {
+class IOHelper {
 
     private Context mContext;
 
-    public DataHelper(Context c) {
+    IOHelper(Context c) {
         mContext = c;
     }
 
@@ -33,6 +33,33 @@ class DataHelper {
     boolean DeleteFile(final String fileName) {
         File file = new File(mContext.getFilesDir(), fileName);
         return file.delete();
+    }
+
+    /**
+     *
+     * @param anyFilename name of the file
+     * @return file as string
+     * @throws IOException simple io exception
+     */
+    String readFile(final String anyFilename) throws IOException {
+        BufferedReader bufferedReader = null;
+        try {
+            InputStream in = mContext.openFileInput(anyFilename);
+            bufferedReader = new BufferedReader(new InputStreamReader(in));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append("\n");
+            }
+            bufferedReader.close();
+            return stringBuilder.toString();
+        } catch (FileNotFoundException fnfe) {
+            return null;
+        } catch (IOException ioe) {
+            Log.e("IOException", ioe.toString());
+            throw new IOException();
+        }
     }
 
     //来自 https://blog.csdn.net/it_liuwei/article/details/52333642
@@ -56,28 +83,21 @@ class DataHelper {
             writer.write(anyString);
             return true;
         } catch (Exception e) {
-            Log.d("ERICSEXCEPTION", e.toString());
+            Log.d("WRITE EXCEPTION", e.toString());
         } finally {
             if (writer != null) {
                 try {
                     writer.close();
                 } catch (Exception e) {
-                    Log.d("ERICSEXCEPTION", e.toString());
+                    Log.d("WRITE EXCEPTION", e.toString());
                 }
             }
         }
         return false;
     }
 
-    //TODO try to make it not static
-
-    /**
-     * Another implementation.
-     * @param fileName
-     * @param message
-     * @return
-     */
-    boolean writeFileData(final String fileName, final String message) {
+    //another implementation
+    /*boolean writeFileData(final String fileName, final String message) {
         try {
             FileOutputStream fout = mContext.openFileOutput(fileName, mContext.MODE_PRIVATE);
             byte[] bytes = message.getBytes();
@@ -88,11 +108,11 @@ class DataHelper {
             e.printStackTrace();
         }
         return false;
-    }
+    }*/
 
     //自带OverWrite，而且是外置存储
     //来自 https://blog.csdn.net/csdnzouqi/article/details/75333266
-    boolean saveFile(final String str, final String fileName) {
+    /*boolean saveFile(final String str, final String fileName) {
         //创建String对象保存文件名路径
         try {
             //创建指定路径的文件
@@ -114,35 +134,9 @@ class DataHelper {
             e.printStackTrace();
         }
         return false;
-    }
+    }*/
 
-    /**
-     *
-     * @param anyFilename
-     * @return
-     * @throws IOException
-     */
-    String readFile(final String anyFilename) throws IOException {
-        BufferedReader bufferedReader = null;
-        try {
-            InputStream in = mContext.openFileInput(anyFilename);
-            bufferedReader = new BufferedReader(new InputStreamReader(in));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line);
-                stringBuilder.append("\n");
-            }
-            bufferedReader.close();
-            return stringBuilder.toString();
-        } catch (FileNotFoundException fnfe) {
-            return null;
-        } catch (IOException ioe) {
-            throw new IOException();
-        }
-    }
-
-    String readFileData(final String fileName) {
+    /*String readFileData(final String fileName) {
         String res = "";
         try {
             FileInputStream fin = mContext.openFileInput(fileName);
@@ -155,7 +149,7 @@ class DataHelper {
             e.printStackTrace();
         }
         return res;
-    }
+    }*/
 
     //这个适合外置存储
     /*String getFile(String fileName) {
