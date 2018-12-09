@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
 
         //auto select "News"
         navigationView.getMenu().getItem(0).setChecked(true);
-        onNavigationItemSelected(navigationView.getMenu().getItem(1));
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
     }
 
     @Override
