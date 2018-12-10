@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.prof.rssparser.Article;
 import com.squareup.picasso.Picasso;
@@ -31,14 +32,15 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView title, intro, date;
-        ImageView theImage;
+        ImageView theImage, star;
 
         private ViewHolder(View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.textViewTitle);
+            title = itemView.findViewById(R.id.favoriteTitle);
             intro = itemView.findViewById(R.id.textViewIntro);
             date = itemView.findViewById(R.id.textViewDate);
             theImage = itemView.findViewById(R.id.headImage);
+            star = itemView.findViewById(R.id.imageViewStar);
         }
     }
 
@@ -51,7 +53,7 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int index) {
-        Article currentArticle = manyArticles.get(index);
+        final Article currentArticle = manyArticles.get(index);
         //author, content might be NULL!
         String title = currentArticle.getTitle(),
                 intro = currentArticle.getDescription(),
@@ -110,6 +112,25 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
                 intent.putExtra("tmp", tmp);
                 intent.putExtra("URL", tmp2);
                 contextGivenByAncestor.startActivity(intent);
+            }
+        });
+
+        final FavoriteHelper favoriteHelper = new FavoriteHelper(contextGivenByAncestor);
+        if (favoriteHelper.inFavorite(currentArticle)) {
+            viewHolder.star.setImageResource(R.drawable.ic_star_yellow_24dp);
+        }
+        viewHolder.star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (favoriteHelper.inFavorite(currentArticle)) {
+                    viewHolder.star.setImageResource(R.drawable.ic_star_border_white_24dp);
+                    favoriteHelper.removeFromFavorite(currentArticle);
+                    Toast.makeText(contextGivenByAncestor, "Removed from favorite list.", Toast.LENGTH_LONG).show();
+                } else {
+                    viewHolder.star.setImageResource(R.drawable.ic_star_yellow_24dp);
+                    favoriteHelper.addToFavorite(currentArticle);
+                    Toast.makeText(contextGivenByAncestor, "Added to favorite list.", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

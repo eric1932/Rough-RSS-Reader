@@ -26,7 +26,7 @@ import java.util.Collections;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ArrayList<Article> articleList;
+    ArrayList<Article> articleList;
     private int loaded = 0, feedNumber;
     private FloatingActionButton fab;
 
@@ -58,6 +58,11 @@ public class MainActivity extends AppCompatActivity
         //my code below
 
         getData();
+
+        IOHelper ioHelper = new IOHelper(getApplication());
+        if (!ioHelper.isExist("favorite.txt")) {
+            ioHelper.writeFile("", "favorite.txt", true);
+        }
 
         //auto select "News"
         navigationView.getMenu().getItem(0).setChecked(true);
@@ -122,7 +127,9 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.frameLayout, new SiteManagerFragment())
                     .commit();
         } else if (id == R.id.nav_favorites) {
-
+            fragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, new FavoriteFragment())
+                    .commit();
         } else if (id == R.id.nav_tools) {
             fragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, new TestActivityFragment())

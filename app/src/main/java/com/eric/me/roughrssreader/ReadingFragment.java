@@ -91,7 +91,7 @@ public class ReadingFragment extends Fragment {
 
     //TODO 这里有一个bug
     private void getData() {
-        articleList = ((MainActivity) getActivity()).getArticleList();
+        articleList = ((MainActivity) getActivity()).articleList;
         loaded = ((MainActivity) getActivity()).getLoaded();
     }
 
