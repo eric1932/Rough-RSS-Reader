@@ -118,12 +118,14 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
         final FavoriteHelper favoriteHelper = new FavoriteHelper(contextGivenByAncestor);
         if (favoriteHelper.inFavorite(currentArticle)) {
             viewHolder.star.setImageResource(R.drawable.ic_star_yellow_24dp);
+        } else {
+            viewHolder.star.setImageResource(R.drawable.ic_star_border_black_24dp);
         }
         viewHolder.star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (favoriteHelper.inFavorite(currentArticle)) {
-                    viewHolder.star.setImageResource(R.drawable.ic_star_border_white_24dp);
+                    viewHolder.star.setImageResource(R.drawable.ic_star_border_black_24dp);
                     favoriteHelper.removeFromFavorite(currentArticle);
                     Toast.makeText(contextGivenByAncestor, "Removed from favorite list.", Toast.LENGTH_LONG).show();
                 } else {

@@ -8,9 +8,9 @@ import com.prof.rssparser.Article;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
-//TODO 一次只能加一个星星
-//TODO 无法删除
+//TODO 一次只能添加/删除最后一个星星
 class FavoriteHelper {
 
     private Context mContext;
@@ -20,7 +20,36 @@ class FavoriteHelper {
 
     FavoriteHelper(Context context) {
         mContext = context;
-        //load articles
+        loadArticles();
+    }
+
+    boolean inFavorite(Article article) {
+        return (indexOf(article) >= 0);
+    }
+
+    private int indexOf(Article article) {
+        String title = article.getTitle();
+        Date pubDate = article.getPubDate();
+        for (int i = 0; i < articles.size(); i++) {
+            if (articles.get(i).getTitle().equals(title) && articles.get(i).getPubDate().equals(article.getPubDate())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    void addToFavorite(Article article) {
+        articles.add(article);
+        syncChanges();
+    }
+
+    void removeFromFavorite(Article article) {
+        int index = indexOf(article);
+        articles.remove(index);
+        syncChanges();
+    }
+
+    private void loadArticles() {
         ioHelper = new IOHelper(mContext);
         String json;
         try {
@@ -38,32 +67,14 @@ class FavoriteHelper {
         }
     }
 
-    boolean inFavorite(Article article) {
-        String title = article.getTitle();
-        for (Article x : articles) {
-            if (x.getTitle().equals(title)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    void addToFavorite(Article article) {
-        articles.add(article);
-        syncChanges();
-    }
-
-    void removeFromFavorite(Article article) {
-        articles.remove(article);
-    }
-
     private void syncChanges() {
         Gson gson = new Gson();
         String toJson = gson.toJson(articles);
         ioHelper.writeFile(toJson, fileName, true);
+        loadArticles();
     }
 
-    public ArrayList<Article> getArticles() {
+    ArrayList<Article> getArticles() {
         return articles;
     }
 }
