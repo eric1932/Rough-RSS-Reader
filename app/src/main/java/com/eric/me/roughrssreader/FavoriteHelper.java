@@ -22,7 +22,7 @@ class FavoriteHelper {
         mContext = context;
         //load articles
         ioHelper = new IOHelper(mContext);
-        String json = null;
+        String json;
         try {
             json = ioHelper.readFile(fileName);
         } catch (IOException e) {
@@ -61,5 +61,9 @@ class FavoriteHelper {
         Gson gson = new Gson();
         String toJson = gson.toJson(articles);
         ioHelper.writeFile(toJson, fileName, true);
+    }
+
+    public ArrayList<Article> getArticles() {
+        return articles;
     }
 }
