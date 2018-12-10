@@ -62,7 +62,7 @@ public class SiteManagerFragment extends Fragment {
                                 url = "http://" + url;
                             }
                             addSite(title, url);
-                            Snackbar.make(view, "Success", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(view, "This will take effect when next refresh", Snackbar.LENGTH_LONG).show();
                         }
                     }
                 });
