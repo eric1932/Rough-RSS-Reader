@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 //TODO 一次只能添加/删除最后一个星星
+//TODO 访问收藏
 class FavoriteHelper {
 
     private Context mContext;
