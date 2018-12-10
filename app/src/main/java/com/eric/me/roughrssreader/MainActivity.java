@@ -207,7 +207,11 @@ public class MainActivity extends AppCompatActivity
             } catch (IOException e) {
                 e.printStackTrace();
                 //failed
-                return new Site[0];
+                return SiteHelper.getDefaultSiteArray();
+            }
+            if (json.equals("[]\n")) {
+                ioHelper.writeFile(SiteHelper.getDefaultJson(), fileName, true);
+                return SiteHelper.getDefaultSiteArray();
             }
             return (new SiteHelper(json)).getArray();
         } else {

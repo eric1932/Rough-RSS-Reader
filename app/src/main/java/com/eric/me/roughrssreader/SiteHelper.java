@@ -43,7 +43,8 @@ public class SiteHelper {
 
     static Site[] getDefaultSiteArray() {
         Gson gson = new Gson();
-        String json = "[{\"site_name\":\"IT Home\",\"url\":\"http://www.ithome.com/rss\"},{\"site_name\":\"Android Authority\",\"url\":\"https://www.androidauthority.com/feed\"}]";
+        //String json = "[{\"site_name\":\"IT Home\",\"url\":\"http://www.ithome.com/rss\"},{\"site_name\":\"Android Authority\",\"url\":\"https://www.androidauthority.com/feed\"}]";
+        String json = "[{\"site_name\":\"Android Authority\",\"url\":\"https://www.androidauthority.com/feed\"}]";
         return gson.fromJson(json, Site[].class);
     }
 
@@ -58,6 +59,7 @@ public class SiteHelper {
     }
 
     static String getDefaultJson() {
-        return "[{\"site_name\":\"IT Home\",\"url\":\"http://www.ithome.com/rss\"},{\"site_name\":\"Android Authority\",\"url\":\"https://www.androidauthority.com/feed\"}]";
+        //return "[{\"site_name\":\"IT Home\",\"url\":\"http://www.ithome.com/rss\"},{\"site_name\":\"Android Authority\",\"url\":\"https://www.androidauthority.com/feed\"}]";
+        return "[{\"site_name\":\"Android Authority\",\"url\":\"https://www.androidauthority.com/feed\"}]";
     }
 }
