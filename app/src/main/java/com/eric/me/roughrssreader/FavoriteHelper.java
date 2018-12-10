@@ -32,7 +32,7 @@ class FavoriteHelper {
         String title = article.getTitle();
         Date pubDate = article.getPubDate();
         for (int i = 0; i < articles.size(); i++) {
-            if (articles.get(i).getTitle().equals(title) && articles.get(i).getPubDate().equals(article.getPubDate())) {
+            if (articles.get(i).getTitle().equals(title) && articles.get(i).getPubDate().equals(pubDate)) {
                 return i;
             }
         }
