@@ -57,11 +57,7 @@ public class MainActivity extends AppCompatActivity
 
         //my code below
 
-        Site[] siteList = getFeedOrDefault();
-        feedNumber = siteList.length;
-        for (Site x : siteList) {
-            addFeed(x.getUrl());
-        }
+        getData();
 
         //auto select "News"
         navigationView.getMenu().getItem(0).setChecked(true);
@@ -193,7 +189,7 @@ public class MainActivity extends AppCompatActivity
         return toReplace;
     }
 
-    private void clearFeed() {
+    void clearFeed() {
         articleList = new ArrayList<>();
     }
 
@@ -217,6 +213,14 @@ public class MainActivity extends AppCompatActivity
         } else {
             ioHelper.writeFile(SiteHelper.getDefaultJson(), fileName, true);
             return SiteHelper.getDefaultSiteArray();
+        }
+    }
+
+    void getData() {
+        Site[] siteList = getFeedOrDefault();
+        feedNumber = siteList.length;
+        for (Site x : siteList) {
+            addFeed(x.getUrl());
         }
     }
 
