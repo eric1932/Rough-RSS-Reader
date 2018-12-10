@@ -3,6 +3,7 @@ package com.eric.me.roughrssreader;
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -71,6 +72,10 @@ class IOHelper {
      * @return success or not
      */
     boolean writeFile(final String anyString, final String anyFileName, final boolean overWrite) {
+        //加入恢复默认的提示
+        if (anyString.equals("[]\n")) {
+            Toast.makeText(mContext, "All sites deleted. Default site will be applied.", Toast.LENGTH_LONG).show();
+        }
         Writer writer = null;
         try {
             OutputStream outputStream;

@@ -40,6 +40,7 @@ public class ReadingFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                //TODO 也许可精简
                 ((MainActivity) getActivity()).clearFeed();
                 ((MainActivity) getActivity()).getData();
                 initRecyclerView();
