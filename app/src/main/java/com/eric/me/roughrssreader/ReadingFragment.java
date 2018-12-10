@@ -1,6 +1,5 @@
 package com.eric.me.roughrssreader;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;

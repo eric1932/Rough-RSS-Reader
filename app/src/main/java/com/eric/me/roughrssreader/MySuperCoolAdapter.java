@@ -1,14 +1,18 @@
 package com.eric.me.roughrssreader;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -127,11 +131,11 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
                 if (favoriteHelper.inFavorite(currentArticle)) {
                     viewHolder.star.setImageResource(R.drawable.ic_star_border_black_24dp);
                     favoriteHelper.removeFromFavorite(currentArticle);
-                    Toast.makeText(contextGivenByAncestor, "Removed from favorite list.", Toast.LENGTH_LONG).show();
+                    showProcess("Removed from favorite list.");
                 } else {
                     viewHolder.star.setImageResource(R.drawable.ic_star_yellow_24dp);
                     favoriteHelper.addToFavorite(currentArticle);
-                    Toast.makeText(contextGivenByAncestor, "Added to favorite list.", Toast.LENGTH_LONG).show();
+                    showProcess("Added to favorite list.");
                 }
             }
         });
@@ -144,5 +148,23 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
         } else {
             return manyArticles.size();
         }
+    }
+
+    private void showProcess(final String text) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(contextGivenByAncestor);
+        ProgressBar progressBar = new ProgressBar(contextGivenByAncestor);
+        builder.setView(progressBar);
+        final AlertDialog alertDialog = builder.create();
+        //透明背景
+        Window window = alertDialog.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(0));
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.dismiss();
+                Toast.makeText(contextGivenByAncestor, text, Toast.LENGTH_LONG).show();
+            }
+        }, 2500);
+        alertDialog.show();
     }
 }

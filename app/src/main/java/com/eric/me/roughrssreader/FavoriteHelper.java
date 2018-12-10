@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
-//TODO 一次只能添加/删除最后一个星星
+//TODO 一次只能添加/删除最后一个星星 -> 只是删除缓慢而已
 //TODO 访问收藏
 class FavoriteHelper {
 

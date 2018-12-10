@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -87,6 +88,10 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.ViewHolder> {
 
     private void removeItemAndSave(final int index) {
         siteArrayList.remove(index);
+        if (siteArrayList.size() == 0) {
+            //加入恢复默认的提示
+            Toast.makeText(mContext, "All sites deleted. Default site will be applied.", Toast.LENGTH_LONG).show();
+        }
         SiteHelper siteHelper = new SiteHelper(siteArrayList);
         String newJson = siteHelper.toJson();
         IOHelper ioHelper = new IOHelper(mContext);
