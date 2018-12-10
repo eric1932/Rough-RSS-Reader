@@ -73,7 +73,7 @@ class IOHelper {
      */
     boolean writeFile(final String anyString, final String anyFileName, final boolean overWrite) {
         //加入恢复默认的提示
-        if (anyString.equals("[]\n")) {
+        if (anyString.equals("[]")) {
             Toast.makeText(mContext, "All sites deleted. Default site will be applied.", Toast.LENGTH_LONG).show();
         }
         Writer writer = null;
