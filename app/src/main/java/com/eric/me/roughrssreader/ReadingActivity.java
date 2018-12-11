@@ -36,7 +36,6 @@ public class ReadingActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String[] URL = intent.getStringArrayExtra("URL");
         getFeed(URL);
-        //getFeed(new String[] {"https://www.ithome.com/rss/"});
     }
 
     public void getFeed(String[] URL) {
