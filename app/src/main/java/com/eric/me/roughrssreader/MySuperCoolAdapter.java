@@ -165,7 +165,7 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
                 alertDialog.dismiss();
                 Toast.makeText(contextGivenByAncestor, text, Toast.LENGTH_LONG).show();
             }
-        }, 2500);
+        }, 500);
         alertDialog.show();
     }
 }

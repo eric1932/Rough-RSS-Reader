@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
-//TODO 一次只能添加/删除最后一个星星
+//TODO 一次只能添加/删除最后一个星星 会覆盖掉前一个
 //TODO 访问收藏
 //TODO 精简读写
 class FavoriteHelper {
