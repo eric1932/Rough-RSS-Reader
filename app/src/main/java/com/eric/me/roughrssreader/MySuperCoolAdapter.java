@@ -3,6 +3,7 @@ package com.eric.me.roughrssreader;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -157,7 +158,7 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
         final AlertDialog alertDialog = builder.create();
         //透明背景
         Window window = alertDialog.getWindow();
-        window.setBackgroundDrawable(new ColorDrawable(0));
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         new android.os.Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

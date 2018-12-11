@@ -2,7 +2,10 @@ package com.eric.me.roughrssreader;
 
 import android.content.Context;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.prof.rssparser.Article;
 
 import java.io.IOException;
@@ -10,8 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
-//TODO 一次只能添加/删除最后一个星星 -> 只是删除缓慢而已
+//TODO 一次只能添加/删除最后一个星星
 //TODO 访问收藏
+//TODO 精简读写
 class FavoriteHelper {
 
     private Context mContext;
@@ -45,8 +49,7 @@ class FavoriteHelper {
     }
 
     void removeFromFavorite(Article article) {
-        int index = indexOf(article);
-        articles.remove(index);
+        articles.remove(indexOf(article));
         syncChanges();
     }
 
@@ -69,7 +72,19 @@ class FavoriteHelper {
     }
 
     private void syncChanges() {
-        Gson gson = new Gson();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setExclusionStrategies(new ExclusionStrategy() {
+            @Override
+            public boolean shouldSkipField(FieldAttributes f) {
+                return (f.getName().equals("description") || f.getName().equals("content") || f.getName().equals("image"));
+            }
+
+            @Override
+            public boolean shouldSkipClass(Class<?> clazz) {
+                return false;
+            }
+        });
+        Gson gson = gsonBuilder.create();
         String toJson = gson.toJson(articles);
         ioHelper.writeFile(toJson, fileName, true);
         loadArticles();
