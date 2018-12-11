@@ -1,5 +1,7 @@
 package com.eric.me.roughrssreader;
 
+
+import android.content.SharedPreferences;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -103,5 +106,33 @@ public class MainActivity extends AppCompatActivity
 
     public void changeActivity(View v) {
         startActivity(i);
+    }
+
+    private String toSave;
+    private String fromSave;
+    protected  void onPause() {
+        super.onPause();
+        SharedPreferences sharedPreferences = getSharedPreferences(SHAEED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(new String(), toSave);
+        editor.apply();
+    }
+
+    private void toLoad() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHAEED_PREFS, MODE_PRIVATE);
+        fromSave = sharedPreferences.getString(toSave, "");
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+    }
+
+    private void updateViews() {
+        TextView link = findViewById(R.id.);
+        if (fromSave == "") {
+            return;
+        } else {
+            link.setText(fromSave);
+            toSave = fromSave;
+        }
     }
 }
