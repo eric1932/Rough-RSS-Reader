@@ -12,7 +12,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -68,9 +67,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.getMenu().getItem(0).setChecked(true);
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
 
-        //hide
+        //hide unnecessary things
         navigationView.getMenu().findItem(R.id.nav_tools).setVisible(false);
         navigationView.getMenu().findItem(R.id.communicate).setVisible(false);
+        findViewById(R.id.buttonEnterTest).setVisibility(View.INVISIBLE);
     }
 
     @Override

@@ -50,13 +50,18 @@ public class ReadingFragment extends Fragment {
                     public void run() {
                         swipeRefreshLayout.setRefreshing(false);//取消刷新
                     }
-                },5000);
+                },2000);
+                //TODO 改进
             }
         });
 
         initRecyclerView();
         // wait until load finished
         (new LoadOnFinish()).execute();
+
+        //set title bar
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("News");
+
         return view;
     }
 

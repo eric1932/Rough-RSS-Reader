@@ -44,6 +44,8 @@ public class SiteManagerFragment extends Fragment {
                 builder.setTitle("Add a new source");
                 final EditText editTextTitle = new EditText(getActivity());
                 final EditText editTextURL = new EditText(getActivity());
+                editTextTitle.setHint("Site Name");
+                editTextURL.setHint("URL");
                 LinearLayout linearLayout = new LinearLayout(getActivity());
                 linearLayout.setOrientation(LinearLayout.VERTICAL);
                 linearLayout.addView(editTextTitle);
@@ -55,7 +57,7 @@ public class SiteManagerFragment extends Fragment {
                         //TODO
                         String title = editTextTitle.getText().toString();
                         String url = editTextURL.getText().toString();
-                        if (!ReadingActivity.testSingleFeed(url)) {
+                        if (title.length() == 0 || !ReadingActivity.testSingleFeed(url)) {
                             Snackbar.make(view, "Please input legal rss feed url", Snackbar.LENGTH_LONG).show();
                         } else {
                             if (!url.startsWith("http://") && !url.startsWith("https://")) {
@@ -77,6 +79,9 @@ public class SiteManagerFragment extends Fragment {
                 alertDialog.show();
             }
         });
+
+        //set title bar
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Sites");
 
         return view;
     }

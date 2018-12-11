@@ -39,6 +39,10 @@ public class FavoriteFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         favoriteAdapter = new FavoriteAdapter(articles, R.layout.favorite_list_view, getActivity());
         recyclerView.setAdapter(favoriteAdapter);
+
+        //set title bar
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Favorites");
+
         return mView;
     }
 }

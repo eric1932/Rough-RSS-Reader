@@ -58,7 +58,7 @@ public class ReadingActivity extends AppCompatActivity {
     }
 
     public static boolean testSingleFeed(String URL) {
-        if (!URL.contains(".") || URL.contains(" ") || URL.contains("\\")) {
+        if (URL == null || URL.length() == 0 || !URL.contains(".") || URL.contains(" ") || URL.contains("\\") || URL.contains("\n")) {
             return false;
         } else if (!URL.startsWith("http://") && !URL.startsWith("https://")) {
             URL = "http://" + URL;
