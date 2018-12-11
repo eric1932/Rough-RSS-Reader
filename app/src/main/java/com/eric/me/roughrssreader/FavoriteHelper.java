@@ -19,7 +19,6 @@ import java.util.Date;
 //解决方法：加个static完事！
 //尚未进行分析
 //TODO 访问收藏
-//TODO 精简读写
 class FavoriteHelper {
 
     private Context mContext;
@@ -91,7 +90,6 @@ class FavoriteHelper {
         Gson gson = gsonBuilder.create();
         String toJson = gson.toJson(articles);
         ioHelper.writeFile(toJson, fileName, true);
-        //貌似不需要load了
         loadArticles();
     }
 

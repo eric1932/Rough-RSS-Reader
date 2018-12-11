@@ -45,7 +45,7 @@ public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.
             intro = itemView.findViewById(R.id.textViewIntro);
             date = itemView.findViewById(R.id.textViewDate);
             theImage = itemView.findViewById(R.id.headImage);
-            star = itemView.findViewById(R.id.imageViewStar);
+            star = itemView.findViewById(R.id.favoratedStar);
         }
     }
 
