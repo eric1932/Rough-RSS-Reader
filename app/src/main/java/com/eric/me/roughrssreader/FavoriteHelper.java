@@ -13,12 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
-//sync changes必须有
-//文件写入没问题，问题出在articles数组
-//不知为何.add和.remove只能生效一次
-//解决方法：加个static完事！
-//尚未进行分析
-//TODO 访问收藏
 class FavoriteHelper {
 
     private Context mContext;

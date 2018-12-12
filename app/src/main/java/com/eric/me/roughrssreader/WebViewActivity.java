@@ -25,8 +25,6 @@ public class WebViewActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setHorizontalScrollBarEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
-        //webView.loadDataWithBaseURL(null, "<style>img{display: inline; height: auto; max-width: 100%;} " +
-        //        "</style>\n" + "<style>iframe{ height: auto; width: auto;}" + "</style>\n" + content, null, "utf-8", null);
         webView.loadDataWithBaseURL(null, "<style>img{display: inline; height: auto; max-width: 100%;}</style>\n" +
                 "<style>iframe{height: auto; width: auto;}</style>\n" + content
                 + "<br />\n<br />\n<br />\n<br />\n", "html/text", "utf-8", null);

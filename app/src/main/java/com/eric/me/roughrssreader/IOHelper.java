@@ -63,7 +63,6 @@ class IOHelper {
         }
     }
 
-    //来自 https://blog.csdn.net/it_liuwei/article/details/52333642
     /**
      *
      * @param anyString any string to write in the file

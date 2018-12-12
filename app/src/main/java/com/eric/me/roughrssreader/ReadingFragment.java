@@ -39,7 +39,7 @@ public class ReadingFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //TODO 也许可精简
+                //TODO
                 ((MainActivity) getActivity()).clearFeed();
                 ((MainActivity) getActivity()).getData();
                 initRecyclerView();
@@ -48,10 +48,10 @@ public class ReadingFragment extends Fragment {
                 new Handler().postDelayed(new Runnable() {//模拟耗时操作
                     @Override
                     public void run() {
-                        swipeRefreshLayout.setRefreshing(false);//取消刷新
+                        swipeRefreshLayout.setRefreshing(false);//finish refreshing
                     }
                 },2000);
-                //TODO 改进
+                //TODO
             }
         });
 
@@ -93,7 +93,7 @@ public class ReadingFragment extends Fragment {
         }
     }
 
-    //TODO 这里有一个bug
+    //TODO bug x 1
     private void getData() {
         articleList = ((MainActivity) getActivity()).articleList;
         loaded = ((MainActivity) getActivity()).getLoaded();

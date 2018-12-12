@@ -69,20 +69,20 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.ViewHold
                 imageURL = currentArticle.getImage();
         final String tmp2 = linkURL;
 
-        //title一定有
+        //title一
         viewHolder.title.setText(title);
 
-        //处理content
+        //process content
         if (content == null) {
             content = intro;
         }
         final String tmp = content;
 
-        //intro判断
+        //intro
         boolean introMightBeContent = false;
-        if (intro.length() >= 400) {
+        if (intro.length() >= 250) {
             introMightBeContent = true;
-            //Intro太长或者直接识别成正文就不显示了，大概400+
+            //Intro too long
             Log.d("INTROERROR", "Introduction exceeds max length.");
             intro = "";
             viewHolder.intro.setHeight(0);
@@ -90,7 +90,7 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.ViewHold
             viewHolder.intro.setText(intro);
         }
 
-        //date判断
+        //date
         if (currentArticle.getPubDate() != null) {
             date = currentArticle.getPubDate().toString();
             viewHolder.date.setText(date);
@@ -99,7 +99,7 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.ViewHold
             viewHolder.date.setMaxHeight(0);
         }
 
-        //image判断
+        //image
         if (imageURL == null || !imageURL.contains(".png") && !imageURL.contains(".jpg") && !imageURL.contains(".jpeg") && !imageURL.contains(".gif")) {
             Log.d("IMAGEERROR", "Image URL is null OR does not include proper image URL: " + imageURL);
             imageURL = "";
@@ -156,7 +156,6 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.ViewHold
         ProgressBar progressBar = new ProgressBar(contextGivenByAncestor);
         builder.setView(progressBar);
         final AlertDialog alertDialog = builder.create();
-        //透明背景
         Window window = alertDialog.getWindow();
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         new android.os.Handler().postDelayed(new Runnable() {
