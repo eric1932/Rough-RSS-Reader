@@ -22,13 +22,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class MySuperCoolAdapter extends RecyclerView.Adapter<MySuperCoolAdapter.ViewHolder> {
+public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.ViewHolder> {
 
     private ArrayList<Article> manyArticles = new ArrayList<>();
     private int cardViewID;
     private Context contextGivenByAncestor;
 
-    MySuperCoolAdapter(ArrayList<Article> articleInput, int n, Context context) {
+    ReadingAdapter(ArrayList<Article> articleInput, int n, Context context) {
         manyArticles = articleInput;
         cardViewID = n;
         contextGivenByAncestor = context;

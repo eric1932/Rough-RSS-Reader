@@ -23,7 +23,7 @@ public class ReadingFragment extends Fragment {
     private View view;
     private ArrayList<Article> articleList;
     private int loaded, feedNumber;
-    private MySuperCoolAdapter adapter;
+    private ReadingAdapter adapter;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -106,7 +106,7 @@ public class ReadingFragment extends Fragment {
     }
 
     private void updateRecyclerView() {
-        adapter = new MySuperCoolAdapter(articleList, R.layout.card_view, getActivity());
+        adapter = new ReadingAdapter(articleList, R.layout.card_view, getActivity());
         recyclerView.setAdapter(adapter);
     }
 }

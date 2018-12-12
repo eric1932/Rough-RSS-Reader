@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ReadingActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private MySuperCoolAdapter adapter;
+    private ReadingAdapter adapter;
     private ProgressBar progressBar;
 
     @Override
@@ -44,7 +44,7 @@ public class ReadingActivity extends AppCompatActivity {
         parser.onFinish(new Parser.OnTaskCompleted() {
             @Override
             public void onTaskCompleted(ArrayList<Article> arrayList) {
-                adapter = new MySuperCoolAdapter(arrayList, R.layout.card_view, ReadingActivity.this);
+                adapter = new ReadingAdapter(arrayList, R.layout.card_view, ReadingActivity.this);
                 progressBar.setVisibility(View.INVISIBLE);
                 recyclerView.setAdapter(adapter);
             }
